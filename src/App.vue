@@ -8,7 +8,7 @@
       <section class="greeting" v-show="showGreeting">
         <div class="greeting-main">
           <h2>The Future Looks Bright Verde</h2>
-          <p>If you're like me, you can't WAIT until Austin FC release their first official kit. Since I can't I wait, I made this kit creator so we can make our own. This tool allows you to design a kit by choosing your own selections from the toolbar or randomize it and start from there <span class="not-mobile">(hit <strong>Enter</strong>, <strong>Space Bar</strong> or <strong>Directional Arrows</strong> at any time to randomize as well)</span>. Either way, hope you have fun and let's GROW THE LEGEND!</p>
+          <p>Do you have a sharp eye for design and a love of our city's great football club? This retro-esque tool allows you to design a kit by choosing your own selections from the toolbar or randomize it and start from there <span class="not-mobile">(hit <strong>Enter</strong>, <strong>Space Bar</strong> or <strong>Directional Arrows</strong> at any time to randomize as well)</span>. Either way, hope you have fun and let's GROW THE LEGEND!</p>
 
           <p>Be sure to take screenshots of your favorite designs and post them with <strong>#AustinFCKitCreator</strong></p>
 
@@ -49,6 +49,7 @@
             />
           </section>
 
+          <button v-on:click="handleGreetingClose(false)">Go From Here</button>
           <button v-show="!defaultPaletteEnabled" v-on:click="resetColors">Reset Colors</button>
           <button v-on:click="handleGreetingClose(true)">Randomize Kit</button>
         </div>
@@ -382,7 +383,7 @@
         colors: null,
 
         shirtOptions,
-        activeShirtOption: null,
+        activeShirtOption: 'stripes',
         shirtFill: black,
         shirtTypeFill: green,
         shirtSecondaryFill: white,
@@ -390,7 +391,7 @@
         shirtSleeveFill: black,
         logoFill: white,
         
-        collarFill: green,
+        collarFill: 'white',
         showButtonCollar: false,
         
         shortsFill: black,
@@ -425,18 +426,18 @@
         window.scrollTo(scrollOptions);
       },
       arraysMatch(_arr1, _arr2) {
-          if (!Array.isArray(_arr1) || ! Array.isArray(_arr2) || _arr1.length !== _arr2.length)
-            return false;
+        if (!Array.isArray(_arr1) || ! Array.isArray(_arr2) || _arr1.length !== _arr2.length)
+          return false;
 
-          var arr1 = _arr1.concat().sort();
-          var arr2 = _arr2.concat().sort();
+        var arr1 = _arr1.concat().sort();
+        var arr2 = _arr2.concat().sort();
 
-          for (var i = 0; i < arr1.length; i++) {
+        for (var i = 0; i < arr1.length; i++) {
 
-            if (arr1[i] !== arr2[i]) { return false; }
-          }
+          if (arr1[i] !== arr2[i]) { return false; }
+        }
 
-          return true;
+        return true;
       },
       getSetting() {
         const settings = [
@@ -938,7 +939,6 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
     z-index: 0;
     transform: scale(1.1);
     opacity: .5;
@@ -947,18 +947,21 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   @media screen and (max-width: 1100px) {
     .stadium-stage {
       transform: scale(1.7);
+      height: 100vh;
     }
   }
 
   @media screen and (max-width: 760px) {
     .stadium-stage {
       transform: scale(3);
+      height: 100vh;
     }
   }
 
   @media screen and (max-width: 490px) {
     .stadium-stage {
       transform: scale(3.5);
+      height: 100vh;
     }
   }
 
